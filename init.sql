@@ -20,70 +20,71 @@ CREATE TABLE questions (
     answer_d VARCHAR(255),
     correct_answer CHAR(1)
 );
+
 INSERT INTO questions (question_text, answer_a, answer_b, answer_c, answer_d, correct_answer)
 VALUES
-('Какой интерфейс определяет порядок сортировки элементов в коллекциях Java?',
+('Which interface defines the sorting order of elements in Java collections?',
 'Comparable',
 'Comparator',
 'Sortable',
 'Orderable',
 'b'),
-('Что такое автобоксинг и анбоксинг в Java?',
-'Автоматическая конвертация примитивных типов в объекты и наоборот',
-'Процесс создания и удаления объектов',
-'Механизм исключений',
-'Особенности работы с коллекциями',
+('What is autoboxing and unboxing in Java?',
+'Automatic conversion of primitive types to objects and vice versa',
+'Process of creating and deleting objects',
+'Exception handling mechanism',
+'Features of working with collections',
 'a'),
-('Какая из следующих операций не может быть выполнена с неизменяемыми строками (String) в Java?',
-'Конкатенация',
-'Сравнение',
-'Изменение отдельного символа',
-'Преобразование в массив символов',
+('Which of the following operations cannot be performed with immutable strings (String) in Java?',
+'Concatenation',
+'Comparison',
+'Changing a single character',
+'Conversion to a character array',
 'c'),
-('Что такое маркеры интерфейсов (marker interfaces) в Java? Выберите один из примеров',
-'Интерфейсы без методов, используемые для обозначения специальных свойств класса',
-'Интерфейсы, реализующие определенные методы',
-'Синтаксическая ошибка в Java',
-'Интерфейсы, используемые только для создания абстрактных классов',
+('What are marker interfaces in Java? Choose one example',
+'Interfaces without methods, used to denote special properties of a class',
+'Interfaces implementing specific methods',
+'Syntax error in Java',
+'Interfaces used only for creating abstract classes',
 'a'),
-('Какая коллекция лучше всего подходит для хранения уникальных элементов в порядке их добавления?',
+('Which collection is best suited for storing unique elements in the order they were added?',
 'ArrayList',
 'HashSet',
 'LinkedList',
 'TreeMap',
 'b'),
-('Что такое метод equals() в Java и как он связан с методом hashCode()?',
-'Определяет равенство объектов. hashCode() используется для оптимизации поиска',
-'Определяет порядок сортировки объектов',
-'Используется для клонирования объектов',
-'Не имеет отношения к hashCode()',
+('What is the equals() method in Java and how is it related to the hashCode() method?',
+'Determines object equality. hashCode() is used for search optimization',
+'Determines the sorting order of objects',
+'Used for cloning objects',
+'Has no relation to hashCode()',
 'a'),
-('Какая ключевое слово используется для создания абстрактного класса в Java?',
+('Which keyword is used to create an abstract class in Java?',
 'abstract',
 'interface',
 'virtual',
 'abstract class',
 'a'),
-('Что такое исключение (exception) в Java?',
-'Ошибка, которая приводит к прерыванию выполнения программы',
-'Способ передачи данных между методами',
-'Синтаксическая ошибка в коде',
-'Механизм для создания многопоточных приложений',
+('What is an exception in Java?',
+'An error that interrupts the execution of a program',
+'A way to transfer data between methods',
+'A syntax error in the code',
+'A mechanism for creating multithreaded applications',
 'a'),
-('Какая из следующих коллекций лучше всего подходит для хранения элементов в порядке возрастания ключей?',
+('Which of the following collections is best suited for storing elements in ascending key order?',
 'HashMap',
 'HashSet',
 'TreeMap',
 'LinkedHashMap',
 'c'),
-('Что такое сериализация в Java и зачем она используется?',
-'Процесс преобразования объекта в последовательность байтов для сохранения или передачи',
-'Способ создания многопоточных приложений',
-'Механизм для создания графического интерфейса',
-'Оптимизация работы с коллекциями',
+('What is serialization in Java and why is it used?',
+'The process of converting an object into a sequence of bytes for storage or transmission',
+'A way to create multithreaded applications',
+'A mechanism for creating a graphical interface',
+'Optimization of working with collections',
 'a');
 
--- Таблица для хранения игровых сессий
+-- Table for storing game sessions
 DROP TABLE IF EXISTS quiz_sessions;
 CREATE TABLE quiz_sessions (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -97,7 +98,7 @@ CREATE TABLE quiz_sessions (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
--- Таблица для хранения детальных ответов пользователя
+-- Table for storing detailed user answers
 DROP TABLE IF EXISTS user_answers;
 CREATE TABLE user_answers (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -110,7 +111,7 @@ CREATE TABLE user_answers (
     FOREIGN KEY (question_id) REFERENCES questions(id)
 );
 
--- Таблица для хранения статистики пользователей
+-- Table for storing user statistics
 DROP TABLE IF EXISTS user_statistics;
 CREATE TABLE user_statistics (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -124,7 +125,7 @@ CREATE TABLE user_statistics (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
--- Индексы для оптимизации запросов
+-- Indexes for query optimization
 CREATE INDEX idx_session_user ON quiz_sessions(user_id);
 CREATE INDEX idx_answer_session ON user_answers(session_id);
 CREATE INDEX idx_answer_question ON user_answers(question_id);
